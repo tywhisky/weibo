@@ -48,6 +48,12 @@ public function destroy()
  }
 
 
+public function __construct()
+ {
+ $this->middleware('guest', [
+ 'only' => ['create']
+ ]);
+ }
 
 
 
