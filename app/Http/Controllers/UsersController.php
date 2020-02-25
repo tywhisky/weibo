@@ -76,7 +76,7 @@ public function update(User $user, Request $request)
 public function __construct()
  {
  $this->middleware('auth', [
- 'except' => ['show', 'create', 'store']
+ 'except' => ['show', 'create', 'store','index']
  ]);
 
 
@@ -90,6 +90,14 @@ $this->middleware('guest', [
  }
 
 
+public function destroy(User $user)
+ {
+$this->authorize('destroy', $user);
+
+ $user->delete();
+ session()->flash('success', '成功删除用户！');
+ return back();
+ }
 
 
 
